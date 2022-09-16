@@ -1,0 +1,35 @@
+.pet-list {
+  height: 100%;
+
+  .status-select {
+    height: 8%;
+    mat-form-field {
+      text-align: center;
+    }
+  }
+
+  mat-selection-list {
+    max-height: calc(92% - 20px);
+    overflow: auto;
+    mat-list-option {
+      .pet-item {
+        .pet-name,
+        .pet-status {
+          text-align: center;
+        }
+
+        .pet-status {
+          &.available {
+            color: green;
+          }
+          &.pending {
+            color: orange;
+          }
+          &.sold {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+}

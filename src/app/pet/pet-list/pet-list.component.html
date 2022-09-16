@@ -1,16 +1,28 @@
-<mat-form-field appearance="fill">
-  <mat-select
-    value="available"
-    (selectionChange)="onSelectStatus($event.value)"
-  >
-    <mat-option *ngFor="let status of petStatus$ | async" [value]="status">
-      {{ status }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="pet-list">
+  <div class="status-select" fxLayoutAlign="center">
+    <mat-form-field appearance="fill">
+      <mat-select
+        value="available"
+        (selectionChange)="onSelectStatus($event.value)"
+      >
+        <mat-option *ngFor="let status of petStatus$ | async" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-<mat-list>
-  <mat-list-item *ngFor="let pet of pets$ | async">
-    {{ pet.name }} | {{ pet.status }}
-  </mat-list-item>
-</mat-list>
+  <mat-selection-list multiple="false">
+    <ng-container *ngFor="let pet of pets$ | async">
+      <mat-list-option>
+        <div class="pet-item">
+          <span fxFlex="50%" class="pet-name">{{ pet.name }}</span>
+          <span fxFlex="50%" class="pet-status" [ngClass]="pet.status">
+            {{ pet.status }}
+          </span>
+        </div>
+      </mat-list-option>
+      <mat-divider></mat-divider>
+    </ng-container>
+  </mat-selection-list>
+</div>
