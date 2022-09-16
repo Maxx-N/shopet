@@ -5,7 +5,7 @@
         value="available"
         (selectionChange)="onSelectStatus($event.value)"
       >
-        <mat-option *ngFor="let status of petStatus$ | async" [value]="status">
+        <mat-option *ngFor="let status of petStatus" [value]="status">
           {{ status }}
         </mat-option>
       </mat-select>

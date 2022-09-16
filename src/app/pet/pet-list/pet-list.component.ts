@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { PetRepositoryService } from '../pet-repository.service';
+import { IPet } from '../pet.model';
 
 @Component({
   selector: 'app-pet-list',
@@ -9,11 +11,11 @@ import { PetRepositoryService } from '../pet-repository.service';
 })
 export class PetListComponent implements OnInit {
   constructor(private petRepository: PetRepositoryService) {}
-  petStatus$!: Observable<string[]>;
-  pets$!: Observable<any[]>;
+  petStatus:string[] = [];
+  pets$!: Observable<IPet[]>;
 
   ngOnInit(): void {
-    this.petStatus$ = this.petRepository.getAllPetStatus();
+    this.petStatus = this.petRepository.getAllPetStatus();
     this.pets$ = this.petRepository.getPetsByStatus('available');
   }
 
