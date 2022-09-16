@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { PetRepositoryService } from '../pet-repository.service';
 
 @Component({
@@ -8,10 +9,9 @@ import { PetRepositoryService } from '../pet-repository.service';
 })
 export class PetListComponent implements OnInit {
   constructor(private petRepository: PetRepositoryService) {}
+  status$!: Observable<string[]>;
 
   ngOnInit(): void {
-    this.petRepository.getPetById(1).subscribe((pet) => {
-      console.log(pet);
-    });
+    this.status$ = this.petRepository.getAllPetStatus();
   }
 }
