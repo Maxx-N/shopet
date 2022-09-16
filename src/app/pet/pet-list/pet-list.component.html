@@ -1,6 +1,6 @@
 <div class="pet-list">
-  <div class="status-select" fxLayoutAlign="center">
-    <mat-form-field appearance="fill">
+  <div class="top" fxLayoutAlign="space-around center">
+    <mat-form-field appearance="standard">
       <mat-select
         value="available"
         (selectionChange)="onSelectStatus($event.value)"
@@ -10,6 +10,9 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <button mat-icon-button color="primary" matTooltip="Add a new pet" matTooltipPosition="right" routerLink="/pet/new">
+      <mat-icon>add_circle</mat-icon>
+    </button>
   </div>
 
   <mat-selection-list multiple="false">

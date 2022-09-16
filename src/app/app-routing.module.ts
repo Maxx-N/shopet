@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './core/home/home.component';
+import { AddPetComponent } from './pet/add-pet/add-pet.component';
 import { PetListComponent } from './pet/pet-list/pet-list.component';
 import { AuthenticationComponent } from './user/authentication/authentication.component';
 
@@ -16,7 +17,10 @@ const routes: Routes = [
   },
   {
     path: 'pet',
-    children: [{ path: 'index', component: PetListComponent }],
+    children: [
+      { path: 'index', component: PetListComponent },
+      { path: 'new', component: AddPetComponent },
+    ],
   },
   { path: '**', redirectTo: 'home' },
 ];

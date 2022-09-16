@@ -1,15 +1,18 @@
 .pet-list {
   height: 100%;
 
-  .status-select {
-    height: 8%;
+  .top {
+    height: 10%;
     mat-form-field {
       text-align: center;
+    }
+    button {
+      transform: scale(1.5);
     }
   }
 
   mat-selection-list {
-    max-height: calc(92% - 20px);
+    max-height: calc(90% - 20px);
     overflow: auto;
     mat-list-option {
       .pet-item {

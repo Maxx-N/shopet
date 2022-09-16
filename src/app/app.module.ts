@@ -11,6 +11,7 @@ import { MaterialModule } from './material.module';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { HomeComponent } from './core/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AddPetComponent } from './pet/add-pet/add-pet.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AuthenticationComponent,
     NavbarComponent,
     HomeComponent,
+    AddPetComponent,
   ],
   imports: [
     BrowserModule,
