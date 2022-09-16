@@ -1,0 +1,12 @@
+.app {
+  height: 100%;
+
+  .navbar {
+    height: 64px;
+  }
+
+  .content {
+    height: calc(100% - 64px - 40px);
+    border: 20px solid transparent;
+  }
+}

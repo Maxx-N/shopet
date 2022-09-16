@@ -1,0 +1,19 @@
+<div class="navbar">
+  <mat-toolbar color="primary">
+    <div><a routerLink="">PET SHOP</a></div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+        <ng-container *ngIf="!isAuth">
+          <li><a routerLink="">Signup</a></li>
+          <li><a routerLink="">Login</a></li>
+        </ng-container>
+        <ng-container *ngIf="isAuth">
+          <li><a routerLink="">Pets</a></li>
+          <li class="pointer">
+            <a>Logout</a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </mat-toolbar>
+</div>
