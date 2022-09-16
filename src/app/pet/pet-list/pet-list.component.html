@@ -1,3 +1,16 @@
-<ul>
-  <li *ngFor="let stat of status$ | async">{{stat}}</li>
-</ul>
+<mat-form-field appearance="fill">
+  <mat-select
+    value="available"
+    (selectionChange)="onSelectStatus($event.value)"
+  >
+    <mat-option *ngFor="let status of petStatus$ | async" [value]="status">
+      {{ status }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-list>
+  <mat-list-item *ngFor="let pet of pets$ | async">
+    {{ pet.name }} | {{ pet.status }}
+  </mat-list-item>
+</mat-list>

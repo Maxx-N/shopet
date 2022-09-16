@@ -9,9 +9,15 @@ import { PetRepositoryService } from '../pet-repository.service';
 })
 export class PetListComponent implements OnInit {
   constructor(private petRepository: PetRepositoryService) {}
-  status$!: Observable<string[]>;
+  petStatus$!: Observable<string[]>;
+  pets$!: Observable<any[]>;
 
   ngOnInit(): void {
-    this.status$ = this.petRepository.getAllPetStatus();
+    this.petStatus$ = this.petRepository.getAllPetStatus();
+    this.pets$ = this.petRepository.getPetsByStatus('available');
+  }
+
+  onSelectStatus(newStatus: string): void {
+    this.pets$ = this.petRepository.getPetsByStatus(newStatus);
   }
 }
