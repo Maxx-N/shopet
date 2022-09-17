@@ -12,11 +12,15 @@ import { IPet } from './pet.model';
 export class PetRepositoryService {
   constructor(private http: HttpClient) {}
 
-  postPet(
-    name: string,
-    status: 'sold' | 'pending' | 'available',
-    imageUrl: string
-  ): Observable<IPet> {
+  postPet({
+    name,
+    status,
+    imageUrl,
+  }: {
+    name: string;
+    status: 'sold' | 'pending' | 'available';
+    imageUrl: string;
+  }): Observable<IPet> {
     return this.http
       .post<IPetDto>(`${environment.apiUrl}/pet`, {
         name,
