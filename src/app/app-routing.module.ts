@@ -4,15 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './core/home/home.component';
 import { AddPetComponent } from './pet/add-pet/add-pet.component';
 import { PetListComponent } from './pet/pet-list/pet-list.component';
-import { AuthenticationComponent } from './user/authentication/authentication.component';
+import { AuthComponent } from './user/auth/auth.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'auth',
     children: [
-      { path: 'login', component: AuthenticationComponent },
-      { path: 'signup', component: AuthenticationComponent },
+      { path: 'login', component: AuthComponent },
+      { path: 'signup', component: AuthComponent },
     ],
   },
   {

@@ -12,14 +12,14 @@ import { MaterialModule } from './material.module';
 import { AddPetComponent } from './pet/add-pet/add-pet.component';
 import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
 import { PetListComponent } from './pet/pet-list/pet-list.component';
-import { AuthenticationComponent } from './user/authentication/authentication.component';
+import { AuthComponent } from './user/auth/auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     PetListComponent,
-    AuthenticationComponent,
+    AuthComponent,
     NavbarComponent,
     HomeComponent,
     AddPetComponent,
