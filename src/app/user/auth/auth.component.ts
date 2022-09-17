@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+import { AuthRepositoryService } from '../auth-repository.service';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -13,7 +15,10 @@ export class AuthComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   private queryParamsSubscription!: Subscription;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private authRepository: AuthRepositoryService
+  ) {}
 
   ngOnInit(): void {
     this.queryParamsSubscription = this.route.queryParams.subscribe(

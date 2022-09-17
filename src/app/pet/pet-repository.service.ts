@@ -10,6 +10,8 @@ import { IPet } from './pet.model';
   providedIn: 'root',
 })
 export class PetRepositoryService {
+  private baseUrl = `${environment.apiUrl}/pet`;
+
   constructor(private http: HttpClient) {}
 
   postPet({
@@ -22,7 +24,7 @@ export class PetRepositoryService {
     imageUrl: string;
   }): Observable<IPet> {
     return this.http
-      .post<IPetDto>(`${environment.apiUrl}/pet`, {
+      .post<IPetDto>(this.baseUrl, {
         name,
         status,
         photoUrls: [imageUrl],
@@ -36,7 +38,7 @@ export class PetRepositoryService {
 
   getPetsByStatus(status: string): Observable<IPet[]> {
     return this.http
-      .get<IPetDto[]>(`${environment.apiUrl}/pet/findByStatus`, {
+      .get<IPetDto[]>(`${this.baseUrl}/findByStatus`, {
         params: { status },
       })
       .pipe(
