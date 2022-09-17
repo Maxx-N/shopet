@@ -26,4 +26,9 @@ export class PetListComponent implements OnInit {
   onSelectStatus(newStatus: string): void {
     this.pets$ = this.petRepository.getPetsByStatus(newStatus);
   }
+
+  onSelectPet(event: any) {
+    const selectedPet: IPet = event.options[0].value;
+    console.log(selectedPet);
+  }
 }

@@ -10,14 +10,20 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-icon-button color="primary" matTooltip="Add a new pet" matTooltipPosition="right" routerLink="/pet/new">
+    <button
+      mat-icon-button
+      color="primary"
+      matTooltip="Add a new pet"
+      matTooltipPosition="right"
+      routerLink="/pet/new"
+    >
       <mat-icon>add_circle</mat-icon>
     </button>
   </div>
 
-  <mat-selection-list multiple="false">
+  <mat-selection-list multiple="false" (selectionChange)="onSelectPet($event)">
     <ng-container *ngFor="let pet of pets$ | async">
-      <mat-list-option>
+      <mat-list-option [value]="pet">
         <div class="pet-item">
           <span fxFlex="50%" class="pet-name">{{ pet.name }}</span>
           <span fxFlex="50%" class="pet-status" [ngClass]="pet.status">
