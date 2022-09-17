@@ -13,6 +13,7 @@ import { NavbarComponent } from './core/navbar/navbar.component';
 import { HomeComponent } from './core/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddPetComponent } from './pet/add-pet/add-pet.component';
+import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AddPetComponent } from './pet/add-pet/add-pet.component';
     NavbarComponent,
     HomeComponent,
     AddPetComponent,
+    PetDetailComponent,
   ],
   imports: [
     BrowserModule,
