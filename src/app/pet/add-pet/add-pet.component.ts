@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { PetRepositoryService } from '../pet-repository.service';
+import { PetService } from '../pet.service';
 
 @Component({
   selector: 'app-add-pet',
@@ -8,17 +10,24 @@ import { PetRepositoryService } from '../pet-repository.service';
   styleUrls: ['./add-pet.component.scss'],
 })
 export class AddPetComponent implements OnInit {
-  constructor(private petRepository: PetRepositoryService) {}
+  petStatus: string[] = [];
+
+  form = new FormGroup({
+    name: new FormControl('', { validators: Validators.required }),
+    status: new FormControl('', { validators: Validators.required }),
+    imageUrl: new FormControl('', { validators: Validators.required }),
+  });
+
+  constructor(
+    private petRepository: PetRepositoryService,
+    private petService: PetService
+  ) {}
 
   ngOnInit(): void {
-    // this.petRepository
-    //   .postPet(
-    //     'test 2',
-    //     'sold',
-    //     'https://i.pinimg.com/736x/9a/be/5f/9abe5f0ad84b083a1a52dac183c7bc89.jpg'
-    //   )
-    //   .subscribe((res) => {
-    //     console.log(res);
-    //   });
+    this.petStatus = this.petService.getAllPetStatus();
+  }
+
+  onAddPet(): void {
+    console.log(this.form.value);
   }
 }

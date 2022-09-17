@@ -1,24 +1,24 @@
 <div class="add-pet">
-  <form fxLayout="column" fxLayoutAlign="center center">
+  <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="form" (ngSubmit)="onAddPet()">
     <mat-form-field appearance="fill">
       <mat-label>Pet Name</mat-label>
-      <input matInput />
+      <input matInput formControlName="name" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Status</mat-label>
-      <mat-select>
-        <mat-option value="sold">Sold</mat-option>
-        <mat-option value="pending">Pending</mat-option>
-        <mat-option value="available">Available</mat-option>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of petStatus" [value]="status">{{
+          status | titlecase
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Image URL</mat-label>
-      <input matInput />
+      <input matInput formControlName="imageUrl"/>
     </mat-form-field>
 
-    <button mat-raised-button color="primary">Create Pet!</button>
+    <button type="submit" mat-raised-button color="primary">Create Pet!</button>
   </form>
 </div>

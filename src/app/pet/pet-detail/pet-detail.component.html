@@ -6,12 +6,12 @@
     <img
       mat-card-image
       [src]="pet.imageUrl"
-      alt="Photo of {{ pet.name }}"
+      alt="Photo of {{ pet.name | titlecase }}"
       onerror="this.src='assets/image-not-found.png'"
     />
     <mat-card-content>
       <span [class]="'pet-status ' + pet.status">
-        {{ pet.status }}
+        {{ pet.status | titlecase }}
       </span>
     </mat-card-content>
   </mat-card>

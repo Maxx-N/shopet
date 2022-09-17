@@ -25,9 +25,9 @@
     <ng-container *ngFor="let pet of pets$ | async">
       <mat-list-option [value]="pet">
         <div class="pet-item">
-          <span fxFlex="50%" class="pet-name">{{ pet.name }}</span>
+          <span fxFlex="50%" class="pet-name">{{ pet.name | titlecase }}</span>
           <span fxFlex="50%" class="pet-status" [ngClass]="pet.status">
-            {{ pet.status }}
+            {{ pet.status | titlecase }}
           </span>
         </div>
       </mat-list-option>

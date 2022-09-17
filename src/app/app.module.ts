@@ -13,6 +13,7 @@ import { AddPetComponent } from './pet/add-pet/add-pet.component';
 import { PetDetailComponent } from './pet/pet-detail/pet-detail.component';
 import { PetListComponent } from './pet/pet-list/pet-list.component';
 import { AuthenticationComponent } from './user/authentication/authentication.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AuthenticationComponent } from './user/authentication/authentication.co
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
