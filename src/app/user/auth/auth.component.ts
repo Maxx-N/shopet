@@ -1,5 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -15,6 +20,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   isSignup = false;
   form!: FormGroup;
   private queryParamsSubscription!: Subscription;
+  private passwordChangeSubscription!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +38,13 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.queryParamsSubscription.unsubscribe();
+    [this.queryParamsSubscription, this.passwordChangeSubscription].forEach(
+      (subscription) => {
+        if (subscription) {
+          subscription.unsubscribe();
+        }
+      }
+    );
   }
 
   onAuth(): void {
@@ -70,15 +82,32 @@ export class AuthComponent implements OnInit, OnDestroy {
         validators: [Validators.required, Validators.email],
       }),
       password: new FormControl('', {
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.minLength(6)],
       }),
     });
 
     if (this.isSignup) {
       this.form.addControl(
         'confirmPassword',
-        new FormControl('', { validators: [Validators.required] })
+        new FormControl('', {
+          validators: [
+            Validators.required,
+            this.confirmPasswordValidator.bind(this),
+          ],
+        })
       );
+      this.passwordChangeSubscription = this.form.controls[
+        'password'
+      ].valueChanges.subscribe((value) => {
+        this.form.controls['confirmPassword'].updateValueAndValidity();
+      });
     }
+  }
+
+  private confirmPasswordValidator(control: AbstractControl): any {
+    if (control.value !== this.form.value.password) {
+      return { unmatchingPasswords: true };
+    }
+    return null;
   }
 }
