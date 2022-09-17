@@ -28,6 +28,8 @@ export class AddPetComponent implements OnInit {
   }
 
   onAddPet(): void {
-    console.log(this.form.value);
+    if (this.form.valid) {
+      console.log(this.form.value);
+    }
   }
 }

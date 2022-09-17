@@ -1,5 +1,11 @@
-<div class="add-pet">
-  <form fxLayout="column" fxLayoutAlign="center center" [formGroup]="form" (ngSubmit)="onAddPet()">
+<div class="add-pet" fxLayout="column" fxLayoutAlign="space-around center">
+  <form
+    fxFlex="45%"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    [formGroup]="form"
+    (ngSubmit)="onAddPet()"
+  >
     <mat-form-field appearance="fill">
       <mat-label>Pet Name</mat-label>
       <input matInput formControlName="name" />
@@ -16,9 +22,25 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Image URL</mat-label>
-      <input matInput formControlName="imageUrl"/>
+      <input matInput formControlName="imageUrl" />
     </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary">Create Pet!</button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.valid"
+    >
+      Create Pet!
+    </button>
   </form>
+  <div class="image-preview" fxFlex="45%" fxLayout="column" fxLayoutAlign="flex-start center">
+    <h2>Photo Preview</h2>
+    <img
+      mat-card-image
+      [src]="form.value.imageUrl"
+      alt="Photo preview"
+      onerror="this.src='assets/image-not-found.png'"
+    />
+  </div>
 </div>
