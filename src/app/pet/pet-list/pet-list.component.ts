@@ -32,6 +32,6 @@ export class PetListComponent implements OnInit {
 
   onSelectPet(event: any) {
     const selectedPet: IPet = event.options[0].value;
-    this.dialog.open(PetDetailComponent)
+    this.dialog.open(PetDetailComponent, { data: {pet: selectedPet} });
   }
 }

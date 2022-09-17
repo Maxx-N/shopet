@@ -12,3 +12,15 @@ body {
 .pointer {
   cursor: pointer;
 }
+
+.pet-status {
+  &.available {
+    color: green;
+  }
+  &.pending {
+    color: orange;
+  }
+  &.sold {
+    color: red;
+  }
+}

@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { IPet } from '../pet.model';
 
 @Component({
   selector: 'app-pet-detail',
   templateUrl: './pet-detail.component.html',
-  styleUrls: ['./pet-detail.component.scss']
+  styleUrls: ['./pet-detail.component.scss'],
 })
-export class PetDetailComponent implements OnInit {
+export class PetDetailComponent {
+  pet: IPet;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(@Inject(MAT_DIALOG_DATA) data: { pet: IPet }) {
+    this.pet = data.pet;
+    console.log(this.pet);
   }
-
 }

@@ -1,14 +1,19 @@
 <div mat-dialog-content class="pet-detail">
-  <mat-card>
-    <mat-card-header fxLayoutAlign="center">
-      <mat-card-title>Shiba Inu</mat-card-title>
+  <mat-card fxLayout="column" fxLayoutAlign="center center">
+    <mat-card-header>
+      <mat-card-title>{{ pet.name }}</mat-card-title>
     </mat-card-header>
     <img
       mat-card-image
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-      alt="Photo of a Shiba Inu"
+      [src]="'pet.imageUrl'"
+      alt="Photo of {{ pet.name }}"
+      onerror="this.src='assets/image-not-found.png'"
     />
-    <mat-card-content fxLayoutAlign="center"> Available </mat-card-content>
+    <mat-card-content>
+      <span [class]="'pet-status ' + pet.status">
+        {{ pet.status }}
+      </span>
+    </mat-card-content>
   </mat-card>
 </div>
 <div mat-dialog-actions fxLayoutAlign="center">
