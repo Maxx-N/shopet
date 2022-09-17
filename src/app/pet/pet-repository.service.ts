@@ -29,8 +29,4 @@ export class PetRepositoryService {
         })
       );
   }
-
-  getPetById(petId: number): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/pet/${petId}`);
-  }
 }
