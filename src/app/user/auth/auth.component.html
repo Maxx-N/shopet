@@ -1,16 +1,22 @@
 <div class="auth">
-  <form fxLayout="column" fxLayoutAlign="center center">
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    *ngIf="!!form"
+    [formGroup]="form"
+    (ngSubmit)="onAuth()"
+  >
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput type="email" />
+      <input matInput type="email" formControlName="email" />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
-      <input matInput type="password" />
+      <input matInput type="password" formControlName="password" />
     </mat-form-field>
     <mat-form-field appearance="fill" *ngIf="isSignup">
       <mat-label>Confirm Password</mat-label>
-      <input matInput type="password" />
+      <input matInput type="password" formControlName="confirmPassword" />
     </mat-form-field>
 
     <button type="submit" mat-raised-button color="primary">
