@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthRepositoryService } from '../auth-repository.service';
+import { UiService } from 'src/app/shared/ui.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,8 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private authRepository: AuthRepositoryService
+    private authRepository: AuthRepositoryService,
+    private uiService: UiService
   ) {}
 
   ngOnInit(): void {
@@ -35,13 +37,36 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   onAuth(): void {
     if (this.form.valid) {
-      console.log(this.form.value);
+      if (this.isSignup) {
+        this.authRepository
+          .signup({
+            username: this.form.value.username,
+            password: this.form.value.password,
+          })
+          .subscribe({
+            next: () => {
+              this.uiService.show3secSnackBar('Successfully Signed Up!');
+            },
+            error: (err: any) => {
+              this.uiService.show3secSnackBar(err.message);
+            },
+          });
+      } else {
+        this.authRepository.login({ ...this.form.value }).subscribe({
+          next: () => {
+            this.uiService.show3secSnackBar('Successfully Logged In!');
+          },
+          error: (err: any) => {
+            this.uiService.show3secSnackBar(err.message);
+          },
+        });
+      }
     }
   }
 
   private initForm(): void {
     this.form = new FormGroup({
-      email: new FormControl('', {
+      username: new FormControl('', {
         validators: [Validators.required, Validators.email],
       }),
       password: new FormControl('', {
