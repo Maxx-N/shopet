@@ -13,6 +13,5 @@ export class PetDetailComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) data: { pet: IPet }) {
     this.pet = data.pet;
-    console.log(this.pet);
   }
 }
