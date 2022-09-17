@@ -2,7 +2,7 @@
   <div class="top" fxLayoutAlign="space-around center">
     <mat-form-field appearance="standard">
       <mat-select
-        value="available"
+        [value]="selectedStatus"
         (selectionChange)="onSelectStatus($event.value)"
       >
         <mat-option *ngFor="let status of petStatus" [value]="status">

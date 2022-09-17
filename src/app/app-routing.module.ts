@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'pet',
     children: [
-      { path: 'index', component: PetListComponent },
+      { path: 'index/:status', component: PetListComponent },
       { path: 'new', component: AddPetComponent },
     ],
   },
