@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 
 import { AuthRepositoryService } from '../auth-repository.service';
 import { UiService } from 'src/app/shared/ui.service';
@@ -50,30 +50,42 @@ export class AuthComponent implements OnInit, OnDestroy {
   onAuth(): void {
     if (this.form.valid) {
       if (this.isSignup) {
-        this.authRepository
-          .signup({
-            username: this.form.value.username,
-            password: this.form.value.password,
-          })
-          .subscribe({
-            next: () => {
-              this.uiService.show3secSnackBar('Successfully Signed Up!');
-            },
-            error: (err: any) => {
-              this.uiService.show3secSnackBar(err.message);
-            },
-          });
+        this.triggerSignup();
       } else {
-        this.authRepository.login({ ...this.form.value }).subscribe({
-          next: () => {
-            this.uiService.show3secSnackBar('Successfully Logged In!');
-          },
-          error: (err: any) => {
-            this.uiService.show3secSnackBar(err.message);
-          },
-        });
+        this.triggerLogin();
       }
     }
+  }
+
+  private triggerSignup(): void {
+    this.authRepository
+      .signup({
+        username: this.form.value.username,
+        password: this.form.value.password,
+      })
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.uiService.show3secSnackBar('Successfully Signed Up!');
+        },
+        error: (err: any) => {
+          this.uiService.show3secSnackBar(err.message);
+        },
+      });
+  }
+
+  private triggerLogin(): void {
+    this.authRepository
+      .login({ ...this.form.value })
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.uiService.show3secSnackBar('Successfully Logged In!');
+        },
+        error: (err: any) => {
+          this.uiService.show3secSnackBar(err.message);
+        },
+      });
   }
 
   private initForm(): void {
