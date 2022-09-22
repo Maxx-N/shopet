@@ -14,7 +14,7 @@
         <ng-container *ngIf="isAuth$ | async">
           <li><a routerLink="pet/index/available">Pets</a></li>
           <li class="pointer">
-            <a>Logout</a>
+            <a (click)="onLogout()">Logout</a>
           </li>
         </ng-container>
       </ul>

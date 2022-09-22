@@ -20,4 +20,8 @@ export class NavbarComponent implements OnInit {
       })
     );
   }
+
+  onLogout(): void {
+    this.authRepository.logout();
+  }
 }

@@ -56,6 +56,10 @@ export class AuthRepositoryService {
     );
   }
 
+  logout(): void {
+    this.currentUserSubject$.next(null);
+  }
+
   private isUsernameAvailable(username: string): Observable<boolean> {
     return this.http.get(`${this.baseUrl}/${username}`).pipe(
       map(() => {
