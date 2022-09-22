@@ -50,14 +50,14 @@ export class AuthComponent implements OnInit, OnDestroy {
   onAuth(): void {
     if (this.form.valid) {
       if (this.isSignup) {
-        this.triggerSignup();
+        this.tryToSignup();
       } else {
-        this.triggerLogin();
+        this.tryToLogin();
       }
     }
   }
 
-  private triggerSignup(): void {
+  private tryToSignup(): void {
     this.authRepository
       .signup({
         username: this.form.value.username,
@@ -74,7 +74,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       });
   }
 
-  private triggerLogin(): void {
+  private tryToLogin(): void {
     this.authRepository
       .login({ ...this.form.value })
       .pipe(take(1))
@@ -94,30 +94,34 @@ export class AuthComponent implements OnInit, OnDestroy {
         validators: [Validators.required, Validators.email],
       }),
       password: new FormControl('', {
-        validators: [Validators.required, Validators.minLength(6)],
+        validators: [Validators.required, Validators.minLength(8)],
       }),
     });
 
     if (this.isSignup) {
-      this.form.addControl(
-        'confirmPassword',
-        new FormControl('', {
-          validators: [
-            Validators.required,
-            this.confirmPasswordValidator.bind(this),
-          ],
-        })
-      );
-      this.passwordChangeSubscription = this.form.controls[
-        'password'
-      ].valueChanges.subscribe((value) => {
-        this.form.controls['confirmPassword'].updateValueAndValidity();
-      });
+      this.addPasswordConfirmation();
     }
   }
 
+  private addPasswordConfirmation(): void {
+    this.form.addControl(
+      'confirmPassword',
+      new FormControl('', {
+        validators: [
+          Validators.required,
+          this.confirmPasswordValidator.bind(this),
+        ],
+      })
+    );
+    this.passwordChangeSubscription = this.form
+      .get('password')
+      ?.valueChanges.subscribe((value) => {
+        this.form.controls['confirmPassword'].updateValueAndValidity();
+      })!;
+  }
+
   private confirmPasswordValidator(control: AbstractControl): any {
-    if (control.value !== this.form.value.password) {
+    if (control.value !== this.form.get('password')?.value) {
       return { unmatchingPasswords: true };
     }
     return null;
