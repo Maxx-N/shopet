@@ -118,7 +118,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     );
     this.passwordChangeSubscription = this.form
       .get('password')
-      ?.valueChanges.subscribe((value) => {
+      ?.valueChanges.subscribe(() => {
         this.form.controls['confirmPassword'].updateValueAndValidity();
       })!;
   }

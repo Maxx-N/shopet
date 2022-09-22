@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './core/home/home.component';
-import { AddPetComponent } from './pet/add-pet/add-pet.component';
-import { PetListComponent } from './pet/pet-list/pet-list.component';
+import { AuthGuard } from './core/auth.guard';
 import { AuthComponent } from './core/auth/auth.component';
+import { HomeComponent } from './core/home/home.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +15,7 @@ const routes: Routes = [
     path: 'pet',
     loadChildren: () =>
       import('src/app/pet/pet.module').then((m) => m.PetModule),
+      canLoad: [AuthGuard]
   },
   { path: '**', redirectTo: 'home' },
 ];
