@@ -17,6 +17,7 @@ const routes: Routes = [
     children: [
       { path: 'index/:status', component: PetListComponent },
       { path: 'new', component: AddPetComponent },
+      { path: '**', redirectTo: 'index/available' },
     ],
   },
   { path: '**', redirectTo: 'home' },
