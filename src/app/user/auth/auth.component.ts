@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, take } from 'rxjs';
 
 import { AuthRepositoryService } from '../auth-repository.service';
@@ -25,7 +25,8 @@ export class AuthComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private authRepository: AuthRepositoryService,
-    private uiService: UiService
+    private uiService: UiService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +60,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   private tryToSignup(): void {
     this.authRepository
-      .signup({
+      .signup$({
         username: this.form.value.username,
         password: this.form.value.password,
       })
@@ -67,6 +68,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.uiService.show3secSnackBar('Successfully Signed Up!');
+          this.router.navigate(['pet']);
         },
         error: (err: any) => {
           this.uiService.show3secSnackBar(err.message);
@@ -76,11 +78,12 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   private tryToLogin(): void {
     this.authRepository
-      .login({ ...this.form.value })
+      .login$({ ...this.form.value })
       .pipe(take(1))
       .subscribe({
         next: () => {
           this.uiService.show3secSnackBar('Successfully Logged In!');
+          this.router.navigate(['pet']);
         },
         error: (err: any) => {
           this.uiService.show3secSnackBar(err.message);

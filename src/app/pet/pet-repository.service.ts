@@ -14,7 +14,7 @@ export class PetRepositoryService {
 
   constructor(private http: HttpClient) {}
 
-  postPet({
+  postPet$({
     name,
     status,
     imageUrl,
@@ -36,7 +36,7 @@ export class PetRepositoryService {
       );
   }
 
-  getPetsByStatus(status: string): Observable<IPet[]> {
+  getPetsByStatus$(status: string): Observable<IPet[]> {
     return this.http
       .get<IPetDto[]>(`${this.baseUrl}/findByStatus`, {
         params: { status },

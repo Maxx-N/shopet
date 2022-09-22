@@ -28,10 +28,10 @@ export class PetListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.petStatus = this.petService.getAllPetStatus();
-    this.pets$ = this.petRepository.getPetsByStatus('available');
+    this.pets$ = this.petRepository.getPetsByStatus$('available');
     this.paramsSubscription = this.route.params.subscribe((params: any) => {
       this.selectedStatus = params.status;
-      this.pets$ = this.petRepository.getPetsByStatus(params.status);
+      this.pets$ = this.petRepository.getPetsByStatus$(params.status);
     });
   }
 

@@ -34,7 +34,7 @@ export class AddPetComponent implements OnInit {
 
   onAddPet(): void {
     if (this.form.valid) {
-      this.petRepository.postPet({ ...(this.form.value as IPet) }).subscribe({
+      this.petRepository.postPet$({ ...(this.form.value as IPet) }).subscribe({
         next: (result: IPet) => {
           const message = `Congratulations!!! Your pet "${result.name}" was successfully created!`;
           this.uiService.show3secSnackBar(message);

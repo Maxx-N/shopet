@@ -18,13 +18,13 @@ import { IUserDto } from 'src/app/user/user-dto.model';
 })
 export class AuthRepositoryService {
   private baseUrl = `${environment.apiUrl}/user`;
-  private currentUserSubject = new BehaviorSubject<string | null>(null);
+  private currentUserSubject$ = new BehaviorSubject<string | null>(null);
   currentUser$: Observable<string | null> =
-    this.currentUserSubject.asObservable();
+    this.currentUserSubject$.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  signup(userDto: IUserDto): Observable<IUserDto> {
+  signup$(userDto: IUserDto): Observable<IUserDto> {
     return this.isUsernameAvailable(userDto.username).pipe(
       switchMap((res: boolean) => {
         if (res) {
@@ -36,19 +36,19 @@ export class AuthRepositoryService {
         return this.http.get<IUserDto>(`${this.baseUrl}/${userDto.username}`);
       }),
       tap((res: any) => {
-        this.currentUserSubject.next(res.username);
+        this.currentUserSubject$.next(res.username);
       })
     );
   }
 
-  login(userDto: IUserDto): Observable<IUserDto> {
+  login$(userDto: IUserDto): Observable<IUserDto> {
     return this.http.get<IUserDto>(`${this.baseUrl}/${userDto.username}`).pipe(
       catchError(() => {
         throw new Error('Username does not exist.');
       }),
       map((res: IUserDto) => {
         if (res.password === userDto.password) {
-          this.currentUserSubject.next(res.username);
+          this.currentUserSubject$.next(res.username);
           return res;
         }
         throw new Error('Invalid Password.');

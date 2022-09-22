@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of, switchMap } from 'rxjs';
+import { AuthRepositoryService } from 'src/app/user/auth-repository.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  isAuth = false;
+  isAuth$ = new Observable<boolean>();
 
-  constructor() {}
+  constructor(private authRepository: AuthRepositoryService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isAuth$ = this.authRepository.currentUser$.pipe(
+      switchMap((user) => {
+        console.log(user);
+        return of(!!user);
+      })
+    );
+  }
 }
