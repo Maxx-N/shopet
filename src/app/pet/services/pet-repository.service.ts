@@ -3,12 +3,10 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { IPetDto } from './pet-dto.model';
-import { IPet } from './pet.model';
+import { IPetDto } from '../pet-dto.model';
+import { IPet } from '../pet.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PetRepositoryService {
   private baseUrl = `${environment.apiUrl}/pet`;
 

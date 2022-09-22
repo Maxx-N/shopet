@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './core/home/home.component';
 import { AddPetComponent } from './pet/add-pet/add-pet.component';
 import { PetListComponent } from './pet/pet-list/pet-list.component';
-import { AuthComponent } from './user/auth/auth.component';
+import { AuthComponent } from './core/auth/auth.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,11 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'pet',
-    children: [
-      { path: 'index/:status', component: PetListComponent },
-      { path: 'new', component: AddPetComponent },
-      { path: '**', redirectTo: 'index/available' },
-    ],
+    loadChildren: () =>
+      import('src/app/pet/pet.module').then((m) => m.PetModule),
   },
   { path: '**', redirectTo: 'home' },
 ];

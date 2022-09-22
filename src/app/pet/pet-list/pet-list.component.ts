@@ -3,9 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { PetRepositoryService } from '../pet-repository.service';
+import { PetRepositoryService } from '../services/pet-repository.service';
 import { IPet } from '../pet.model';
-import { PetService } from '../pet.service';
+import { PetService } from '../services/pet.service';
 import { PetDetailComponent } from '../pet-detail/pet-detail.component';
 
 @Component({

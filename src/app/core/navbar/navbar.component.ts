@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of, switchMap } from 'rxjs';
-import { AuthRepositoryService } from 'src/app/user/auth-repository.service';
+import { AuthRepositoryService } from 'src/app/core/auth-repository.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.isAuth$ = this.authRepository.currentUser$.pipe(
       switchMap((user) => {
-        console.log(user);
         return of(!!user);
       })
     );

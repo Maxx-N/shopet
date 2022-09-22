@@ -3,9 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UiService } from 'src/app/shared/ui.service';
-import { PetRepositoryService } from '../pet-repository.service';
+import { PetRepositoryService } from '../services/pet-repository.service';
 import { IPet } from '../pet.model';
-import { PetService } from '../pet.service';
+import { PetService } from '../services/pet.service';
 
 @Component({
   selector: 'app-add-pet',
