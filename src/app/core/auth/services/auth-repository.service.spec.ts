@@ -85,5 +85,9 @@ describe('AuthRepositoryService', () => {
     ).toBeRejectedWith(Error('Invalid Password.'));
   });
 
-  it('should log out', () => {});
+  it('should log out', async () => {
+    service.logout();
+    const usr = await firstValueFrom(service.currentUser$);
+    expect(usr).toBeNull();
+  });
 });
