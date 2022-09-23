@@ -8,7 +8,7 @@ describe('AuthRepositoryService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
     });
     service = TestBed.inject(AuthRepositoryService);
   });
@@ -16,4 +16,16 @@ describe('AuthRepositoryService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should sign up when username is available', () => {});
+
+  it('should not sign up when username is not available', () => {});
+
+  it('should log in when username exists and password is correct', () => {});
+
+  it('should not log in when username does not exist', () => {});
+
+  it('should not log in when password is invalid', () => {});
+
+  it('should log out', () => {});
 });
