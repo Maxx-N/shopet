@@ -10,12 +10,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Then, install and run this client application:
 
-- Open a new terminal
+- Open a new terminal ;
 - Navigate to the directory that will contain the project: `cd [PATH-TO-YOUR DIRECTORY]` ;
 - Clone the project: `git clone https://github.com/Maxx-N/shopet.git` ;
 - Navigate to the project: `cd shopet` ;
-- Install the node dependencies: `npm install`;
-- Run the project: `ng serve`.
+- Install the node dependencies: `npm install` ;
+- Run the project: `ng serve` ;
 - From your browser, navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
