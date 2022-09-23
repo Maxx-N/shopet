@@ -49,7 +49,14 @@ describe('AuthRepositoryService', () => {
     ).toBeRejectedWith(Error('Username is already taken.'));
   });
 
-  it('should log in when username exists and password is correct', () => {});
+  it('should log in when username exists and password is correct', async () => {
+    spyOn(http, 'get').and.returnValue(of(userDto));
+
+    const usr = await firstValueFrom(service.login$(userDto));
+
+    expect(usr.username).toEqual(userDto.username);
+    expect(usr.password).toEqual(userDto.password);
+  });
 
   it('should not log in when username does not exist', () => {});
 

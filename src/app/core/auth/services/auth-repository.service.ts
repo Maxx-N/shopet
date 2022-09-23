@@ -35,7 +35,7 @@ export class AuthRepositoryService {
       switchMap(() => {
         return this.http.get<IUserDto>(`${this.baseUrl}/${userDto.username}`);
       }),
-      tap((res: any) => {
+      tap((res: IUserDto) => {
         this.currentUserSubject$.next(res.username);
       })
     );
