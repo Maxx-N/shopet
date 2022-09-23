@@ -3,6 +3,7 @@
     <app-navbar></app-navbar>
   </div>
   <div class="content">
+    {{screenSize$ | async}}
     <router-outlet></router-outlet>
   </div>
 </div>

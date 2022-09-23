@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ResponsiveService } from './core/responsive.service';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  screenSize$ = new Observable<string | undefined>();
 
+  constructor(private responsiveService: ResponsiveService) {}
+
+  ngOnInit(): void {
+    this.screenSize$ = this.responsiveService.currentScreenSize$;
+  }
 }
