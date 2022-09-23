@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 
 import { AuthRepositoryService } from 'src/app/core/auth-repository.service';
+import { UiService } from 'src/app/shared/ui.service';
 import { ResponsiveService } from '../responsive.service';
 import { ScreenSize } from '../screen-size.enum';
 
@@ -18,7 +19,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private authRepository: AuthRepositoryService,
     private responsiveService: ResponsiveService,
-    private router: Router
+    private router: Router,
+    private uiService: UiService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class NavbarComponent implements OnInit {
 
   onLogout(): void {
     this.authRepository.logout();
+    this.uiService.show3secSnackBar('Successfully Logged Out!');
     this.router.navigate(['auth'], { queryParams: { signup: false } });
   }
 }
