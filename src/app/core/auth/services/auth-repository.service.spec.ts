@@ -58,9 +58,32 @@ describe('AuthRepositoryService', () => {
     expect(usr.password).toEqual(userDto.password);
   });
 
-  it('should not log in when username does not exist', () => {});
+  it('should not log in when username does not exist', async () => {
+    spyOn(http, 'get').and.callFake(() => {
+      return throwError(() => new Error('error'));
+    });
+    await expectAsync(
+      firstValueFrom(
+        service.login$({
+          username: userDto.username,
+          password: userDto.password,
+        })
+      )
+    ).toBeRejectedWith(Error('Username does not exist.'));
+  });
 
-  it('should not log in when password is invalid', () => {});
+  it('should not log in when password is invalid', async () => {
+    spyOn(http, 'get').and.returnValue(of(userDto));
+
+    await expectAsync(
+      firstValueFrom(
+        service.login$({
+          username: userDto.username,
+          password: 'Wrong Password',
+        })
+      )
+    ).toBeRejectedWith(Error('Invalid Password.'));
+  });
 
   it('should log out', () => {});
 });
