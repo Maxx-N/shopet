@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
-  CanActivate,
   CanLoad,
   Route,
-  Router,
-  RouterStateSnapshot,
-  UrlSegment,
-  UrlTree,
+  Router, UrlSegment,
+  UrlTree
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
 
