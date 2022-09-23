@@ -16,6 +16,12 @@
     overflow: auto;
     mat-list-option {
       .pet-item {
+        .pet-name {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+         }
+
         .pet-name,
         .pet-status {
           text-align: center;

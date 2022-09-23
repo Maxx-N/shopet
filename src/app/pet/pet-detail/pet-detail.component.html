@@ -1,7 +1,7 @@
 <div mat-dialog-content class="pet-detail">
   <mat-card fxLayout="column" fxLayoutAlign="center center">
     <mat-card-header>
-      <mat-card-title>{{ pet.name }}</mat-card-title>
+      <mat-card-title>{{ pet.name | titlecase }}</mat-card-title>
     </mat-card-header>
     <img
       mat-card-image

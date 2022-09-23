@@ -2,6 +2,13 @@
   height: 100%;
   mat-card {
     height: 100%;
+
+    mat-card-header {
+      mat-card-title {
+        text-align: center;
+      }
+    }
+
     img {
       max-height: 50%;
       max-width: 50%;
