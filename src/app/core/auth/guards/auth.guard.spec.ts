@@ -2,13 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { firstValueFrom, Observable, of } from 'rxjs';
 
+import { AuthComponent } from '../auth.component';
 import { AuthRepositoryService } from '../services/auth-repository.service';
 import { AuthGuard } from './auth.guard';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
   let authRepositorySpy: any;
-  let currentUserSpy: any;
 
   beforeEach(() => {
     authRepositorySpy = jasmine.createSpyObj(
@@ -18,7 +18,11 @@ describe('AuthGuard', () => {
     );
 
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [
+        RouterTestingModule.withRoutes([
+          { path: 'auth', component: {} as any },
+        ]),
+      ],
       providers: [
         { provide: AuthRepositoryService, useValue: authRepositorySpy },
       ],
@@ -44,5 +48,16 @@ describe('AuthGuard', () => {
     expect(res).toBeTrue();
   });
 
-  it('should unable to load when user does not exist', () => {});
+  it('should unable to load when user does not exist', async () => {
+    (
+      Object.getOwnPropertyDescriptor(authRepositorySpy, 'currentUser$')!
+        .get as any
+    ).and.returnValue(of(null));
+
+    const res: boolean = await firstValueFrom(
+      guard.canLoad({}, []) as Observable<boolean>
+    );
+
+    expect(res).toBeFalse();
+  });
 });
