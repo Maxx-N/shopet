@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ResponsiveService } from '../responsive.service';
-import { ScreenSize } from '../screen-size.enum';
+import { ResponsiveService } from '../responsive/responsive.service';
+import { ScreenSize } from '../responsive/screen-size.enum';
 
 @Component({
   selector: 'app-home',

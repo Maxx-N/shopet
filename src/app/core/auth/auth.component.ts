@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, take } from 'rxjs';
 
-import { AuthRepositoryService } from '../auth-repository.service';
+import { AuthRepositoryService } from './services/auth-repository.service';
 import { UiService } from 'src/app/shared/ui.service';
 
 @Component({

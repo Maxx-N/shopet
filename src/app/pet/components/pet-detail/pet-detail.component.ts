@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { IPet } from '../pet.model';
+import { IPet } from '../../models/pet.model';
 
 @Component({
   selector: 'app-pet-detail',

@@ -11,7 +11,7 @@ import {
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
 
-import { AuthRepositoryService } from './auth-repository.service';
+import { AuthRepositoryService } from '../services/auth-repository.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AddPetComponent } from './add-pet/add-pet.component';
-import { PetListComponent } from './pet-list/pet-list.component';
+import { AddPetComponent } from './components/add-pet/add-pet.component';
+import { PetListComponent } from './components/pet-list/pet-list.component';
 
 const routes: Routes = [
   { path: 'index/:status', component: PetListComponent },

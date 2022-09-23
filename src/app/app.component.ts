@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponsiveService } from './core/responsive.service';
+import { ResponsiveService } from './core/responsive/responsive.service';
 
 @Component({
   selector: 'app-root',

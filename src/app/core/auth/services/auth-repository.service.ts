@@ -11,7 +11,7 @@ import {
 } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { IUserDto } from 'src/app/core/user-dto.model';
+import { IUserDto } from 'src/app/core/auth/models/user-dto.model';
 
 @Injectable({
   providedIn: 'root',

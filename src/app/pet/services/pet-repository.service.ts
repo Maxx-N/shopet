@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { IPetDto } from '../pet-dto.model';
-import { IPet } from '../pet.model';
+import { IPetDto } from '../models/pet-dto.model';
+import { IPet } from '../models/pet.model';
 
 @Injectable()
 export class PetRepositoryService {

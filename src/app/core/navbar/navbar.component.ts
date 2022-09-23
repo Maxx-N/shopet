@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 
-import { AuthRepositoryService } from 'src/app/core/auth-repository.service';
+import { AuthRepositoryService } from 'src/app/core/auth/services/auth-repository.service';
 import { UiService } from 'src/app/shared/ui.service';
-import { ResponsiveService } from '../responsive.service';
-import { ScreenSize } from '../screen-size.enum';
+import { ResponsiveService } from '../responsive/responsive.service';
+import { ScreenSize } from '../responsive/screen-size.enum';
 
 @Component({
   selector: 'app-navbar',
