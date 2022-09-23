@@ -17,18 +17,14 @@ describe('PetListComponent', () => {
 
   beforeEach(() => {
     petServiceSpy = jasmine.createSpyObj('PetService', ['getAllPetStatus']);
-    petServiceSpy.getAllPetStatus.and.returnValue(status);
+    petServiceSpy.getAllPetStatus.and.returnValue(getPetsStatus());
     petRepositorySpy = jasmine.createSpyObj('PetRepositoryService', [
       'getPetsByStatus$',
     ]);
     petRepositorySpy.getPetsByStatus$.and.returnValue(of(getPets()));
 
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        BrowserAnimationsModule,
-        SharedModule
-      ],
+      imports: [RouterTestingModule, BrowserAnimationsModule, SharedModule],
       declarations: [PetListComponent],
       providers: [
         { provide: PetRepositoryService, useValue: petRepositorySpy },
@@ -47,7 +43,7 @@ describe('PetListComponent', () => {
 
   it('should have the correct pet status', () => {
     const status = getPetsStatus();
-    for (let i = 0; i < component.petStatus.length; i++) {
+    for (let i = 0; i < status.length; i++) {
       expect(component.petStatus[i]).toEqual(status[i]);
     }
   });
@@ -63,16 +59,16 @@ describe('PetListComponent', () => {
       }
     }
   });
-
-  const getPetsStatus = (): string[] => {
-    return ['sold', 'pending', 'available'];
-  };
-
-  const getPets = (): IPet[] => {
-    return [
-      { id: 1, imageUrl: 'testUrl1', name: 'pet1', status: 'available' },
-      { id: 2, imageUrl: 'testUrl2', name: 'pet2', status: 'available' },
-      { id: 3, imageUrl: 'testUrl3', name: 'pet3', status: 'available' },
-    ];
-  };
 });
+
+const getPetsStatus = (): string[] => {
+  return ['sold', 'pending', 'available'];
+};
+
+const getPets = (): IPet[] => {
+  return [
+    { id: 1, imageUrl: 'testUrl1', name: 'pet1', status: 'available' },
+    { id: 2, imageUrl: 'testUrl2', name: 'pet2', status: 'available' },
+    { id: 3, imageUrl: 'testUrl3', name: 'pet3', status: 'available' },
+  ];
+};
