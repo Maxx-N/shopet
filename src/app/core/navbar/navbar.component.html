@@ -1,8 +1,13 @@
 <div class="navbar">
   <mat-toolbar color="primary">
     <div><a routerLink="/">PET SHOP</a></div>
-    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+      <ul
+        fxLayout
+        fxLayoutGap="10px"
+        class="navigation-items"
+        *ngIf="!(isScreenSmall$ | async); else smallScreen"
+      >
         <ng-container *ngIf="!(isAuth$ | async)">
           <li>
             <a routerLink="auth" [queryParams]="{ signup: true }">Signup</a>
@@ -18,6 +23,42 @@
           </li>
         </ng-container>
       </ul>
+      <ng-template #smallScreen>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <ng-container *ngIf="!(isAuth$ | async)">
+            <button
+              mat-menu-item
+              routerLink="auth"
+              [queryParams]="{ signup: true }"
+            >
+              <mat-icon>how_to_reg</mat-icon>
+              <span>Signup</span>
+            </button>
+            <button
+              mat-menu-item
+              routerLink="auth"
+              [queryParams]="{ signup: false }"
+            >
+              <mat-icon>login</mat-icon>
+              <span>Login</span>
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="isAuth$ | async">
+            <button mat-menu-item routerLink="pet/index/available">
+              <mat-icon>pets</mat-icon>
+              <span>Pets</span>
+            </button>
+            <button mat-menu-item (click)="onLogout()">
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </ng-container>
+        </mat-menu>
+      </ng-template>
     </div>
   </mat-toolbar>
 </div>

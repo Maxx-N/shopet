@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 const materialModules = [
   MatToolbarModule,
@@ -25,6 +26,7 @@ const materialModules = [
   MatDialogModule,
   MatCardModule,
   MatSnackBarModule,
+  MatMenuModule,
 ];
 
 @NgModule({
