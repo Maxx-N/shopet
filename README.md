@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Then, install and run this client application:
 
-- Open a new terminal (let the previous one running)
+- Open a new terminal
 - Navigate to the directory that will contain the project: `cd [PATH-TO-YOUR DIRECTORY]` ;
 - Clone the project: `git clone https://github.com/Maxx-N/shopet.git` ;
 - Navigate to the project: `cd shopet` ;
