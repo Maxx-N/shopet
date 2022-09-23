@@ -1,13 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { firstValueFrom, of } from 'rxjs';
 
+import { SharedModule } from 'src/app/shared/shared.module';
 import { IPet } from '../../models/pet.model';
 import { PetRepositoryService } from '../../services/pet-repository.service';
 import { PetService } from '../../services/pet.service';
@@ -29,13 +25,9 @@ describe('PetListComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        MatDialogModule,
         RouterTestingModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatIconModule,
-        MatListModule,
         BrowserAnimationsModule,
+        SharedModule
       ],
       declarations: [PetListComponent],
       providers: [
