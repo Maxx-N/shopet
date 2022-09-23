@@ -8,11 +8,5 @@ import { ResponsiveService } from './core/responsive.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  screenSize$ = new Observable<string | undefined>();
-
-  constructor(private responsiveService: ResponsiveService) {}
-
-  ngOnInit(): void {
-    this.screenSize$ = this.responsiveService.currentScreenSize$;
-  }
+  constructor() {}
 }

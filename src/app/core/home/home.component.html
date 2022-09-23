@@ -1,3 +1,4 @@
-<div class="home">
-  <h1>Welcome to the Pet Store!</h1>
+<div class="home" fxLayout="column" fxLayoutAlign="space-evenly center">
+  <h1 [ngClass]="screenSize$ | async">Welcome to the Pet Store!</h1>
+  <img src="/assets/home-background.webp" alt="Cat Photo" />
 </div>

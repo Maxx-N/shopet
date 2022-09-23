@@ -2,18 +2,20 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
+import { ScreenSize } from './screen-size.enum';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ResponsiveService {
-  currentScreenSize$: Observable<string | undefined>;
+  currentScreenSize$: Observable<ScreenSize>;
 
   displayNameMap = new Map([
-    [Breakpoints.XSmall, 'XS'],
-    [Breakpoints.Small, 'S'],
-    [Breakpoints.Medium, 'M'],
-    [Breakpoints.Large, 'L'],
-    [Breakpoints.XLarge, 'XL'],
+    [Breakpoints.XSmall, ScreenSize.XS],
+    [Breakpoints.Small, ScreenSize.S],
+    [Breakpoints.Medium, ScreenSize.M],
+    [Breakpoints.Large, ScreenSize.L],
+    [Breakpoints.XLarge, ScreenSize.XL],
   ]);
 
   constructor(breakpointObserver: BreakpointObserver) {
@@ -31,7 +33,7 @@ export class ResponsiveService {
             return result.breakpoints[query];
           });
 
-          return this.displayNameMap.get(res!);
+          return this.displayNameMap.get(res!) as ScreenSize;
         })
       );
   }
