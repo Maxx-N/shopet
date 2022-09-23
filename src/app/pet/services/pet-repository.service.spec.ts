@@ -10,7 +10,7 @@ import { PetRepositoryService } from './pet-repository.service';
 describe('PetRepositoryService', () => {
   let service: PetRepositoryService;
   let http: HttpClient;
-  let petDto: IPetDto;
+  let pendingPetDtos: IPetDto[];
   let pendingPets: IPet[];
 
   beforeEach(() => {
@@ -20,32 +20,8 @@ describe('PetRepositoryService', () => {
     });
     service = TestBed.inject(PetRepositoryService);
     http = TestBed.inject(HttpClient);
-    petDto = {
-      id: 1,
-      name: 'kitty',
-      status: 'pending',
-      photoUrls: ['testUrl'],
-    };
-    pendingPets = [
-      {
-        id: 1,
-        name: 'kitty',
-        status: 'pending',
-        imageUrl: 'testUrl',
-      },
-      {
-        id: 2,
-        name: 'kitty2',
-        status: 'pending',
-        imageUrl: 'testUrl2',
-      },
-      {
-        id: 3,
-        name: 'kitty3',
-        status: 'pending',
-        imageUrl: 'testUrl3',
-      },
-    ];
+    pendingPetDtos = getPendingPetDtos();
+    pendingPets = getPendingPets();
   });
 
   it('should be created', () => {
@@ -53,12 +29,66 @@ describe('PetRepositoryService', () => {
   });
 
   it('should post a pet', async () => {
-    spyOn(http, 'post').and.returnValue(of<IPetDto>(petDto));
+    spyOn(http, 'post').and.returnValue(of<IPetDto>(pendingPetDtos[0]));
     const pet: IPet = await firstValueFrom(service.postPet$({} as any));
     for (const key of Object.keys(pet)) {
       expect((pet as any)[key]).toEqual((pendingPets[0] as any)[key]);
     }
   });
 
-  it('should get pets by status', () => {});
+  it('should get pets by status', async () => {
+    spyOn(http, 'get').and.returnValue(of<IPetDto[]>(pendingPetDtos));
+    const pets: IPet[] = await firstValueFrom(service.getPetsByStatus$(''));
+    for (let i = 0; i < pets.length; i++) {
+      for (const key of Object.keys(pets[i])) {
+        expect((pets[i] as any)[key]).toEqual((pendingPets[i] as any)[key]);
+      }
+    }
+  });
 });
+
+const getPendingPetDtos = (): IPetDto[] => {
+  return [
+    {
+      id: 1,
+      name: 'kitty',
+      status: 'pending',
+      photoUrls: ['testUrl'],
+    },
+    {
+      id: 2,
+      name: 'kitty2',
+      status: 'pending',
+      photoUrls: ['testUrl2'],
+    },
+    {
+      id: 3,
+      name: 'kitty3',
+      status: 'pending',
+      photoUrls: ['testUrl3'],
+    },
+  ];
+};
+
+const getPendingPets = (): IPet[] => {
+  return [
+    {
+      id: 1,
+      name: 'kitty',
+      status: 'pending',
+      imageUrl: 'testUrl',
+    },
+    {
+      id: 2,
+      name: 'kitty2',
+      status: 'pending',
+      imageUrl: 'testUrl2',
+    },
+    {
+      id: 3,
+      name: 'kitty3',
+      status: 'pending',
+      imageUrl: 'testUrl3',
+    },
+  ];
+};
