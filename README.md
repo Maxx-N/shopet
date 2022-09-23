@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## INSTRUCTIONS TO RUN THE PROJECT LOCALLY
 
-### First, [install and run the server application](https://hub.docker.com/r/swaggerapi/petstore/):
+### First, [install and run the server application](https://hub.docker.com/r/swaggerapi/petstore/).
 
 ### Then, install and run this client application:
 
