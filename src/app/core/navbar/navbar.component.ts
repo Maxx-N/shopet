@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { map, Observable, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
 
 import { AuthRepositoryService } from 'src/app/core/auth-repository.service';
 import { ResponsiveService } from '../responsive.service';
@@ -16,7 +17,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private authRepository: AuthRepositoryService,
-    private responsiveService: ResponsiveService
+    private responsiveService: ResponsiveService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,5 +37,6 @@ export class NavbarComponent implements OnInit {
 
   onLogout(): void {
     this.authRepository.logout();
+    this.router.navigate(['auth'], { queryParams: { signup: false } });
   }
 }
